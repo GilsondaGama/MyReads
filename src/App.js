@@ -18,10 +18,7 @@ class BooksApp extends React.Component {
       })
   }
 
-  changeShelf(book, shelf) {
-    console.log('BOOK ID', book);
-    console.log('SELECTED SHELF', shelf);
-  }
+  changeShelf = () => {}
 
   render() {
     return (
@@ -47,21 +44,26 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
+
                 <div>
                   <ListBooks books={this.state.books} shelfs='currentlyReading' bookshelftitle='Currently Reading' 
                     onChangeShelf={this.changeShelf}
                   />        
                 </div>
+
                 <div>
                   <ListBooks books={this.state.books} shelfs='wantToRead' bookshelftitle='Want To Read'
                     onChangeShelf={this.changeShelf}
                   />        
                 </div>
+
                 <div>
                   <ListBooks books={this.state.books} shelfs='read' bookshelftitle='Read'        
                     onChangeShelf={this.changeShelf}
                   />
                 </div>
+
+
               </div>
             </div>
             <div className="open-search">
