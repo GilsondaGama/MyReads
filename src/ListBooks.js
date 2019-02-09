@@ -40,6 +40,7 @@ class ListBooks extends Component {
                           () => {
                             let e = document.getElementById("book-shelf-changer");
                             let strShelf = e.options[e.selectedIndex].text;
+                            console.log('SHELF:', strShelf)
                             return strShelf
                           }
                         )}>
