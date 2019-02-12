@@ -20,16 +20,17 @@ class BooksApp extends Component {
   changeShelf = (book, selectShelf) => {
     let { books } = this.state; 
     
-//    console.log('STATE - ANTES', books)    
-//    console.log('BOOK ID', book.book.id); 
-//    console.log('BOOK', book);
+    console.log('STATE - ANTES', books)    
+    console.log('BOOK ID', book.book.id); 
+    console.log('BOOK', book);
+
     books=books.filter(b => b.id !== book.book.id).concat({
       ...book.book,      
       shelf: selectShelf
     }); 
     
-//    console.log('STATE', books)         
-//    console.log('SELECTED SHELF', selectShelf);
+    console.log('STATE', books)         
+    console.log('SELECTED SHELF', selectShelf);
 
     this.setState({ books });
   }  

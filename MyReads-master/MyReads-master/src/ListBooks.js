@@ -6,7 +6,7 @@ const ListBooks =({books, shelfs, bookshelftitle, changeShelf}) => {
   const showingBooks = books.filter((b) => b.shelf === shelfs)
 
   function SelectShelf(getElement) {   
-    let strShelf = getElement.options[getElement.selectedIndex].value;  
+    let strShelf = getElement.options[getElement.selectedIndex].text;  
     console.log('STRShelf', strShelf)
     return strShelf
   }
@@ -26,9 +26,9 @@ const ListBooks =({books, shelfs, bookshelftitle, changeShelf}) => {
                   </div>   
 
                   <div className="book-shelf-changer">
-                    <select id={book.id} 
+                    <select id="book-shelf-changer" 
                       onChange={() => {changeShelf({book}, 
-                              SelectShelf(document.getElementById(book.id)))}}>
+                              SelectShelf(document.getElementById("book-shelf-changer")))}}>
 
                       <option value="move" disabled>Move to...</option>
                       <option value="currentlyReading">Currently Reading</option>
