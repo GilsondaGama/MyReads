@@ -196,3 +196,22 @@ button:active {
   text-align: center;
   font-size: 0.8em;
 }
+
+.book-rating-star {
+  position: absolute;
+  top: -12px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  background-image: url('./icons/star.svg');
+  background-repeat: no-repeat;
+  background-size: 40px;
+}
+
+.book-rating-number {
+  padding: 10px 10px 0;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  justify-content: center
+}
