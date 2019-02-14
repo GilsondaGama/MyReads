@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 //import { Link } from 'react-router-dom'
 import './App.css'
 import RatingBook from './RatingBook'
-import SelectShelf from './ListBooks'
 import changeShelf from './App'
+import SelectShelf from './SelectShelf'
 
 class SearchBooks extends Component {
   state = {
@@ -65,7 +65,9 @@ class SearchBooks extends Component {
                     <div className="book-shelf-changer">
                       <select id={book.id} 
                           onChange={() => {changeShelf({book}, 
-                                  SelectShelf(document.getElementById(book.id)))}}>
+                          SelectShelf(document.getElementById(book.id)))}}
+                          defaultValue={book.shelf}
+                      >
 
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading" >Currently Reading</option>

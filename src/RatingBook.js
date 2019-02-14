@@ -1,5 +1,3 @@
-//import { Link } from 'react-router-dom'
-
 const RatingBook = (bookTitle => {
     let letra = bookTitle.substring(0,1).toUpperCase()
     if        (['1','6','A','F','K','P','U','Z'].indexOf(letra) !== -1) {  return '1'

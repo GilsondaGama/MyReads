@@ -27,9 +27,10 @@ const ListBooks =({books, shelfs, bookshelftitle, changeShelf}) => {
 
                   <div className="book-shelf-changer">
                     <select id={book.id} 
-                        onChange={() => {changeShelf({book}, 
-                                SelectShelf(document.getElementById(book.id)))}}>
-
+                      onChange={() => {changeShelf({book}, 
+                      SelectShelf(document.getElementById(book.id)))}}                       
+                      defaultValue={book.shelf}
+                    >
                       <option value="move" disabled>Move to...</option>
                       <option value="currentlyReading" >Currently Reading</option>
                       <option value="wantToRead" >Want to Read</option>
