@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
+import SearchBooks from './SearchBooks'
 import './App.css'
 
 class BooksApp extends Component {
-  state = { books: [] }
-   
-    /*showSearchPage: false */
+  state = { books: []   
+            /* showSearchPage: false */ }
  
   componentDidMount() {
     BooksAPI.getAll()    
@@ -19,18 +19,10 @@ class BooksApp extends Component {
 
   changeShelf = (book, selectShelf) => {
     let { books } = this.state; 
-    
-//    console.log('STATE - ANTES', books)    
-//    console.log('BOOK ID', book.book.id); 
-//    console.log('BOOK', book);
     books=books.filter(b => b.id !== book.book.id).concat({
       ...book.book,      
       shelf: selectShelf
     }); 
-    
-//    console.log('STATE', books)         
-//    console.log('SELECTED SHELF', selectShelf);
-
     this.setState({ books });
   }  
   
@@ -40,19 +32,7 @@ class BooksApp extends Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <button className="close-search" 
-                onClick={() => this.setState({ showSearchPage: false })}>Close</button>
-              <div className="search-books-input-wrapper">              
-                <input type="text" placeholder="Search by title or author"/>
-
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
-          </div>
+          <SearchBooks books={books} />
         ) : (
           <div className="list-books">
             <div className="list-books-title">
