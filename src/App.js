@@ -5,8 +5,10 @@ import SearchBooks from './SearchBooks'
 import './App.css'
 
 class BooksApp extends Component {
-  state = { books: []   
-            /* showSearchPage: false */ }
+  state = { books: [],
+            query: '',
+            updateQuery: '',
+            showSearchPage: false }
  
   componentDidMount() {
     BooksAPI.getAll()    
@@ -15,6 +17,16 @@ class BooksApp extends Component {
           books
         }))        
       })
+  }
+
+  updateQuery = (query) => {
+    this.setState(() => ({
+      query:query.trim()
+    }))
+  }
+
+  clearQuery = () => {
+    this.updateQuery('')
   }
 
   changeShelf = (book, selectShelf) => {
@@ -28,11 +40,16 @@ class BooksApp extends Component {
   
   render() {
     const { books = [] } = this.state;
-
+    const { query } = this.state
+    const { showSearchPage } = this.state.showSearchPage
+    const { updateQuery } = this.state.updateQuery
+    
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchBooks books={books} />
+          <SearchBooks books={books} changeShelf={this.changeShelf} query={query} 
+                      showSearchPage={showSearchPage} updateQuery={updateQuery}
+          />
         ) : (
           <div className="list-books">
             <div className="list-books-title">

@@ -2,14 +2,10 @@ import React from 'react'
 //import { Link } from 'react-router-dom'
 import './App.css'
 import RatingBook from './RatingBook'
+import SelectShelf from './SelectShelf'
 
 const ListBooks =({books, shelfs, bookshelftitle, changeShelf}) => {
   const showingBooks = books.filter((b) => b.shelf === shelfs)
-
-  function SelectShelf(getElement) {   
-    let strShelf = getElement.options[getElement.selectedIndex].value; 
-    return strShelf
-  }
 
   return (
     <div className="bookshelf">

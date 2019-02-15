@@ -1,30 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 //import { Link } from 'react-router-dom'
 import './App.css'
 import RatingBook from './RatingBook'
-import changeShelf from './App'
 import SelectShelf from './SelectShelf'
 
-class SearchBooks extends Component {
-  state = {
-    query: '',
-    showSearchPage: false
-  }
-
-  updateQuery = (query) => {
-    this.setState(() => ({
-      query:query.trim()
-    }))
-  }
-
-  clearQuery = () => {
-    this.updateQuery('')
-  }
-
-  render() {
-    const { query } = this.state
-    const { books } = this.props
-
+const SearchBooks = ({books, changeShelf, query, showSearchPage, updateQuery}) => {
     const showingBooks = query === ''
     ? books
     : books.filter((b) => (
@@ -39,7 +19,7 @@ class SearchBooks extends Component {
           <div className="search-books-input-wrapper">              
             <input type="text" placeholder="Search by title or author"
               value = { query }
-              onChange = {(event) => this.updateQuery(event.target.value)}
+              onChange = {(event) => updateQuery(event.target.value)}
             />
           </div>
         </div>
@@ -68,7 +48,6 @@ class SearchBooks extends Component {
                           SelectShelf(document.getElementById(book.id)))}}
                           defaultValue={book.shelf}
                       >
-
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading" >Currently Reading</option>
                         <option value="wantToRead" >Want to Read</option>
@@ -92,7 +71,7 @@ class SearchBooks extends Component {
       </div>
     )    
   }
-}
+
 
 export default SearchBooks
 
