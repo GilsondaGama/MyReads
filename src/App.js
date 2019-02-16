@@ -6,8 +6,6 @@ import './App.css'
 
 class BooksApp extends Component {
   state = { books: [],
-            query: '',
-            updateQuery: '',
             showSearchPage: false }
  
   componentDidMount() {
@@ -19,36 +17,32 @@ class BooksApp extends Component {
       })
   }
 
-  updateQuery = (query) => {
-    this.setState(() => ({
-      query:query.trim()
-    }))
-  }
-
-  clearQuery = () => {
-    this.updateQuery('')
-  }
-
   changeShelf = (book, selectShelf) => {
     let { books } = this.state; 
     books=books.filter(b => b.id !== book.book.id).concat({
       ...book.book,      
       shelf: selectShelf
     }); 
+
+    BooksAPI.update(book, selectShelf) 
+      .then(() => {  })
+      .catch(() => { alert('Something went wrong with your request.'); })
+ 
     this.setState({ books });
+
+    console.log('BOOK', book)
+    console.log('SELECSHELF', selectShelf)
   }  
-  
+
   render() {
-    const { books = [] } = this.state;
-    const { query } = this.state
+    const { books = [] } = this.state
     const { showSearchPage } = this.state.showSearchPage
-    const { updateQuery } = this.state.updateQuery
     
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchBooks books={books} changeShelf={this.changeShelf} query={query} 
-                      showSearchPage={showSearchPage} updateQuery={updateQuery}
+          <SearchBooks books={books} changeShelf={this.changeShelf} 
+                      showSearchPage={showSearchPage}
           />
         ) : (
           <div className="list-books">

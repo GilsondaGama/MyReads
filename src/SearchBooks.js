@@ -1,15 +1,35 @@
-import React from 'react'
+import React, { Component } from 'react'
 //import { Link } from 'react-router-dom'
 import './App.css'
 import RatingBook from './RatingBook'
 import SelectShelf from './SelectShelf'
 
-const SearchBooks = ({books, changeShelf, query, showSearchPage, updateQuery}) => {
+class SearchBooks extends Component { 
+
+  state = { query: '',
+            updateQuery: '',
+            showSearchPage: false }      
+
+  updateQuery = (query) => {
+    this.setState(() => ({
+      query:query.trim()
+    }))
+  }
+  
+  clearQuery = () => {
+    this.updateQuery('')
+  }           
+  
+  render() {
+    const { query } = this.state
+    const { books, changeShelf } = this.props
+
     const showingBooks = query === ''
     ? books
     : books.filter((b) => (
       b.title.toLowerCase().includes(query.toLowerCase())
-      ))                                    
+      ))    
+      
 
     return (
       <div className="search-books">
@@ -19,23 +39,27 @@ const SearchBooks = ({books, changeShelf, query, showSearchPage, updateQuery}) =
           <div className="search-books-input-wrapper">              
             <input type="text" placeholder="Search by title or author"
               value = { query }
-              onChange = {(event) => updateQuery(event.target.value)}
+              onChange = {(event) => this.updateQuery(event.target.value)}
             />
           </div>
         </div>
 
         <div className="search-books-results">
-          {showingBooks.length !== books.length && (
+          { showingBooks.length !== books.length 
+          ? (
             <div>
               <span>Now showing {showingBooks.length} of {books.length}. </span>
               <button onClick={this.clearQuery}>Show all</button>
+            </div>
+          ) : ( 
+            <div>
+              <span>Now showing {books.length}. </span>
             </div>
           )}
 
           <ol className="books-grid">
             {showingBooks.map((book) => (
-              <li key = {book.id}>     
-           
+              <li key = {book.id}>               
                 <div className="book">
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, 
@@ -48,6 +72,7 @@ const SearchBooks = ({books, changeShelf, query, showSearchPage, updateQuery}) =
                           SelectShelf(document.getElementById(book.id)))}}
                           defaultValue={book.shelf}
                       >
+
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading" >Currently Reading</option>
                         <option value="wantToRead" >Want to Read</option>
@@ -69,9 +94,9 @@ const SearchBooks = ({books, changeShelf, query, showSearchPage, updateQuery}) =
           </ol>
         </div>
       </div>
-    )    
+    )
   }
-
+}
 
 export default SearchBooks
 
