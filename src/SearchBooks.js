@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import RatingBook from './RatingBook'
 import SelectShelf from './SelectShelf'
@@ -96,6 +97,9 @@ class SearchBooks extends Component {
   }
 }
 
+SearchBooks.propTypes = {
+  books: PropTypes.array.isRequired,
+  RatingBook: PropTypes.func.isRequired,
+  SelectShelf: PropTypes.func.isRequired
+};
 export default SearchBooks
-
-

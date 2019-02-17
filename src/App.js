@@ -67,18 +67,21 @@ class BooksApp extends Component {
               <div className="list-books-content">
                 <div>
                   <div>
-                    <ListBooks books={books} shelfs='currentlyReading' bookshelftitle='Currently Reading' 
-                      changeShelf={this.changeShelf}
+                    <ListBooks  books={books} 
+                                shelfs='currentlyReading' bookshelftitle='Currently Reading' 
+                                changeShelf={this.changeShelf}
                     />        
                   </div>
                   <div>
-                    <ListBooks books={books} shelfs='wantToRead' bookshelftitle='Want To Read'
-                      changeShelf={this.changeShelf}                    
+                    <ListBooks  books={books} 
+                                shelfs='wantToRead' bookshelftitle='Want To Read'
+                                changeShelf={this.changeShelf}                    
                     />        
                   </div>
                   <div>
-                    <ListBooks books={books} shelfs='read' bookshelftitle='Read'        
-                      changeShelf={this.changeShelf}                    
+                    <ListBooks  books={books} 
+                                shelfs='read' bookshelftitle='Read'        
+                                changeShelf={this.changeShelf}                    
                     />
                   </div>
                 </div>

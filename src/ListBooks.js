@@ -1,8 +1,9 @@
 import React from 'react'
-//import { Link } from 'react-router-dom'
-import './App.css'
+import PropTypes from 'prop-types'
+
 import RatingBook from './RatingBook'
 import SelectShelf from './SelectShelf'
+import './App.css'
 
 const ListBooks =({books, shelfs, bookshelftitle, changeShelf}) => {
   const showingBooks = books.filter((b) => b.shelf === shelfs)
@@ -51,6 +52,9 @@ const ListBooks =({books, shelfs, bookshelftitle, changeShelf}) => {
   )
 }
 
+ListBooks.propTypes = {
+  books: PropTypes.array.isRequired,
+  RatingBook: PropTypes.func.isRequired,
+  SelectShelf: PropTypes.func.isRequired
+};
 export default ListBooks
-
-
